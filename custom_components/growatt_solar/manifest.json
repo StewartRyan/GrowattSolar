@@ -1,0 +1,12 @@
+{
+  "domain": "growatt_solar",
+  "name": "GrowattSolar",
+  "codeowners": ["@StewartRyan"],
+  "config_flow": true,
+  "documentation": "https://github.com/StewartRyan/GrowattSolar",
+  "integration_type": "device",
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/StewartRyan/GrowattSolar/issues",
+  "loggers": ["custom_components.growatt_solar"],
+  "version": "0.1.0"
+}

@@ -1,0 +1,382 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect to a Growatt inverter",
+        "description": "{details}",
+        "data": {
+          "model_id": "Inverter model",
+          "host": "Gateway host",
+          "port": "TCP port",
+          "unit_id": "Unit identifier",
+          "address_offset": "Address offset"
+        },
+        "data_description": {
+          "address_offset": "Leave at 0 unless the gateway manual uses 1-based addresses. The Growatt register numbers are already 0-based."
+        }
+      },
+      "reconfigure": {
+        "title": "Update the Growatt connection",
+        "description": "{details}",
+        "data": {
+          "model_id": "Inverter model",
+          "host": "Gateway host",
+          "port": "TCP port",
+          "unit_id": "Unit identifier",
+          "address_offset": "Address offset"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "The gateway did not accept a Modbus/TCP connection. Check the host, port, and that the RS485 link is up.",
+      "invalid_host": "Enter an IP address or hostname.",
+      "invalid_model": "That inverter mapping is no longer available. Reload Home Assistant after adding or fixing mapping files.",
+      "timeout": "The inverter did not answer before the timeout. Check the unit identifier, baud rate, and gateway.",
+      "modbus_exception": "The inverter returned a Modbus exception. The unit identifier or register range may not match this model.",
+      "invalid_response": "The inverter answer could not be used. Check the address offset.",
+      "unknown": "Something went wrong while contacting the inverter."
+    },
+    "abort": {
+      "already_configured": "This inverter is already configured.",
+      "no_models": "No valid inverter mapping files were found.",
+      "reconfigure_successful": "The connection was updated."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Growatt polling",
+        "description": "The interval must leave enough time for every register group. Commands are spaced by the mapping's minimum command interval.",
+        "data": {
+          "scan_interval": "Scan interval"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "inverter_run_state": {
+        "name": "Inverter run state"
+      },
+      "pv_power": {
+        "name": "PV power"
+      },
+      "pv1_voltage": {
+        "name": "PV1 voltage"
+      },
+      "pv1_current": {
+        "name": "PV1 current"
+      },
+      "pv1_power": {
+        "name": "PV1 power"
+      },
+      "pv2_voltage": {
+        "name": "PV2 voltage"
+      },
+      "pv2_current": {
+        "name": "PV2 current"
+      },
+      "pv2_power": {
+        "name": "PV2 power"
+      },
+      "ac_output_power": {
+        "name": "AC output power"
+      },
+      "grid_frequency": {
+        "name": "Grid frequency"
+      },
+      "grid_voltage": {
+        "name": "Grid voltage"
+      },
+      "grid_port_current": {
+        "name": "Grid port current"
+      },
+      "ac_output_apparent_power": {
+        "name": "AC output apparent power"
+      },
+      "ac_output_energy_today": {
+        "name": "AC output energy today"
+      },
+      "ac_output_energy_total": {
+        "name": "AC output energy total"
+      },
+      "inverter_run_time": {
+        "name": "Inverter run time"
+      },
+      "pv1_energy_today": {
+        "name": "PV1 energy today"
+      },
+      "pv1_energy_total": {
+        "name": "PV1 energy total"
+      },
+      "pv2_energy_today": {
+        "name": "PV2 energy today"
+      },
+      "pv2_energy_total": {
+        "name": "PV2 energy total"
+      },
+      "pv_energy_total": {
+        "name": "PV energy total"
+      },
+      "inverter_temperature": {
+        "name": "Inverter temperature"
+      },
+      "power_module_temperature": {
+        "name": "Power module temperature"
+      },
+      "boost_temperature": {
+        "name": "Boost converter temperature"
+      },
+      "fault_code": {
+        "name": "Fault code"
+      },
+      "fault_subcode": {
+        "name": "Fault subcode"
+      },
+      "system_work_mode": {
+        "name": "System work mode"
+      },
+      "system_fault_word_0": {
+        "name": "System fault word 0"
+      },
+      "system_fault_word_1": {
+        "name": "System fault word 1"
+      },
+      "system_fault_word_2": {
+        "name": "System fault word 2"
+      },
+      "system_fault_word_3": {
+        "name": "System fault word 3"
+      },
+      "system_fault_word_4": {
+        "name": "System fault word 4"
+      },
+      "system_fault_word_5": {
+        "name": "System fault word 5"
+      },
+      "system_fault_word_6": {
+        "name": "System fault word 6"
+      },
+      "system_fault_word_7": {
+        "name": "System fault word 7"
+      },
+      "battery_discharge_power": {
+        "name": "Battery discharge power"
+      },
+      "battery_charge_power": {
+        "name": "Battery charge power"
+      },
+      "battery_voltage": {
+        "name": "Battery voltage"
+      },
+      "battery_state_of_charge": {
+        "name": "Battery state of charge"
+      },
+      "battery_cycle_count": {
+        "name": "Battery cycle count"
+      },
+      "battery_state_of_health": {
+        "name": "Battery state of health"
+      },
+      "grid_import_power": {
+        "name": "Grid import power"
+      },
+      "grid_export_power": {
+        "name": "Grid export power"
+      },
+      "inverter_load_power": {
+        "name": "Inverter load power"
+      },
+      "battery_temperature": {
+        "name": "Battery temperature"
+      },
+      "grid_import_energy_today": {
+        "name": "Grid import energy today"
+      },
+      "grid_import_energy_total": {
+        "name": "Grid import energy total"
+      },
+      "grid_export_energy_today": {
+        "name": "Grid export energy today"
+      },
+      "grid_export_energy_total": {
+        "name": "Grid export energy total"
+      },
+      "battery_discharge_energy_today": {
+        "name": "Battery discharge energy today"
+      },
+      "battery_discharge_energy_total": {
+        "name": "Battery discharge energy total"
+      },
+      "battery_charge_energy_today": {
+        "name": "Battery charge energy today"
+      },
+      "battery_charge_energy_total": {
+        "name": "Battery charge energy total"
+      },
+      "inverter_load_energy_today": {
+        "name": "Inverter load energy today"
+      },
+      "inverter_load_energy_total": {
+        "name": "Inverter load energy total"
+      },
+      "eps_frequency": {
+        "name": "EPS frequency"
+      },
+      "eps_voltage": {
+        "name": "EPS voltage"
+      },
+      "eps_current": {
+        "name": "EPS current"
+      },
+      "eps_apparent_power": {
+        "name": "EPS apparent power"
+      },
+      "eps_load": {
+        "name": "EPS load"
+      },
+      "highest_cell_voltage": {
+        "name": "Highest cell voltage"
+      },
+      "lowest_cell_voltage": {
+        "name": "Lowest cell voltage"
+      },
+      "battery_module_count": {
+        "name": "Battery module count"
+      },
+      "battery_pack_count": {
+        "name": "Battery pack count"
+      },
+      "highest_cell_temperature": {
+        "name": "Highest cell temperature"
+      },
+      "lowest_cell_temperature": {
+        "name": "Lowest cell temperature"
+      },
+      "parallel_highest_state_of_charge": {
+        "name": "Parallel highest state of charge"
+      },
+      "parallel_lowest_state_of_charge": {
+        "name": "Parallel lowest state of charge"
+      },
+      "firmware_version": {
+        "name": "Firmware version"
+      },
+      "serial_number": {
+        "name": "Serial number"
+      }
+    },
+    "select": {
+      "energy_priority": {
+        "name": "Energy priority"
+      }
+    },
+    "switch": {
+      "charge_from_grid": {
+        "name": "Charge from the grid"
+      },
+      "charge_period_1": {
+        "name": "Charge period 1"
+      },
+      "charge_period_2": {
+        "name": "Charge period 2"
+      },
+      "charge_period_3": {
+        "name": "Charge period 3"
+      },
+      "grid_period_1": {
+        "name": "Grid-first period 1"
+      },
+      "grid_period_2": {
+        "name": "Grid-first period 2"
+      },
+      "grid_period_3": {
+        "name": "Grid-first period 3"
+      }
+    },
+    "time": {
+      "charge_period_1_start": {
+        "name": "Charge period 1 start"
+      },
+      "charge_period_1_end": {
+        "name": "Charge period 1 end"
+      },
+      "charge_period_2_start": {
+        "name": "Charge period 2 start"
+      },
+      "charge_period_2_end": {
+        "name": "Charge period 2 end"
+      },
+      "charge_period_3_start": {
+        "name": "Charge period 3 start"
+      },
+      "charge_period_3_end": {
+        "name": "Charge period 3 end"
+      },
+      "grid_period_1_start": {
+        "name": "Grid-first period 1 start"
+      },
+      "grid_period_1_end": {
+        "name": "Grid-first period 1 end"
+      },
+      "grid_period_2_start": {
+        "name": "Grid-first period 2 start"
+      },
+      "grid_period_2_end": {
+        "name": "Grid-first period 2 end"
+      },
+      "grid_period_3_start": {
+        "name": "Grid-first period 3 start"
+      },
+      "grid_period_3_end": {
+        "name": "Grid-first period 3 end"
+      }
+    },
+    "number": {
+      "charge_power_limit": {
+        "name": "Charge power limit"
+      },
+      "stop_charging_at": {
+        "name": "Stop charging at"
+      },
+      "discharge_power_limit": {
+        "name": "Discharge power limit"
+      },
+      "stop_discharging_at": {
+        "name": "Stop discharging at"
+      }
+    }
+  },
+  "services": {
+    "set_window": {
+      "name": "Set schedule window",
+      "description": "Write one charge or grid-first window's start, end, and enable together.",
+      "fields": {
+        "start_entity": {
+          "name": "Start time",
+          "description": "The window's start time."
+        },
+        "end_entity": {
+          "name": "End time",
+          "description": "The window's end time."
+        },
+        "enable_entity": {
+          "name": "Enable",
+          "description": "The switch that turns this window on."
+        },
+        "start": {
+          "name": "Start",
+          "description": "When the window starts."
+        },
+        "end": {
+          "name": "End",
+          "description": "When the window ends. An end earlier than the start continues past midnight."
+        },
+        "enabled": {
+          "name": "Enabled",
+          "description": "Turn the window on or off."
+        }
+      }
+    }
+  }
+}

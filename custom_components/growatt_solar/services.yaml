@@ -1,0 +1,29 @@
+set_window:
+  fields:
+    start_entity:
+      required: true
+      selector:
+        entity:
+          domain: time
+    end_entity:
+      required: true
+      selector:
+        entity:
+          domain: time
+    enable_entity:
+      required: true
+      selector:
+        entity:
+          domain: switch
+    start:
+      required: true
+      selector:
+        time: {}
+    end:
+      required: true
+      selector:
+        time: {}
+    enabled:
+      required: true
+      selector:
+        boolean: {}
