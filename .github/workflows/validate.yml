@@ -24,8 +24,6 @@ jobs:
         run: pytest
 
   hacs:
-    # HACS reads the manifest and hacs.json anonymously, so it needs a public repository.
-    if: ${{ !github.event.repository.private }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
