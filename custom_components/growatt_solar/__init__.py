@@ -6,6 +6,7 @@ import logging
 
 from homeassistant.core import HomeAssistant
 from homeassistant.exceptions import ConfigEntryError
+from homeassistant.helpers import config_validation as cv
 
 from . import modbus_client
 from .const import (
@@ -14,12 +15,15 @@ from .const import (
     CONF_MODEL,
     CONF_PORT,
     CONF_UNIT_ID,
+    DOMAIN,
     PLATFORMS,
 )
 from .coordinator import GrowattConfigEntry, GrowattCoordinator
 from .register_map import load_catalog
 
 _LOGGER = logging.getLogger(__name__)
+
+CONFIG_SCHEMA = cv.config_entry_only_config_schema(DOMAIN)
 
 
 async def async_setup(hass: HomeAssistant, config: dict) -> bool:

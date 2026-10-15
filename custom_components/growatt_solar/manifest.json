@@ -1,6 +1,7 @@
 {
   "domain": "growatt_solar",
   "name": "GrowattSolar",
+  "after_dependencies": ["frontend", "http"],
   "codeowners": ["@StewartRyan"],
   "config_flow": true,
   "documentation": "https://github.com/StewartRyan/GrowattSolar",
