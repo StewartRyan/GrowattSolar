@@ -25,7 +25,7 @@ async def async_register_schedule_card(hass: HomeAssistant) -> None:
     """Publish the schedule card and ask the frontend to load it."""
     if hass.http is None or DATA_EXTRA_MODULE_URL not in hass.data:
         return
-    directory = Path(__file__).parent / "frontend"
+    directory = Path(__file__).parent / "www"
     try:
         await hass.http.async_register_static_paths(
             [StaticPathConfig(STATIC_URL, str(directory), False)]

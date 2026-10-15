@@ -30,6 +30,8 @@ jobs:
       - uses: hacs/action@main
         with:
           category: integration
+          comment: false
+          ignore: description topics
 
   hassfest:
     runs-on: ubuntu-latest

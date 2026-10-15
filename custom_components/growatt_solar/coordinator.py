@@ -205,9 +205,7 @@ class GrowattCoordinator(DataUpdateCoordinator[dict[str, DecodedReading | None]]
             covered.update(group.group_id for group in groups)
 
         pending = [
-            group
-            for group in self.model.read_groups.values()
-            if group.group_id not in covered
+            group for group in self.model.read_groups.values() if group.group_id not in covered
         ]
         required = [group for group in pending if not group.optional]
         now = time.monotonic()
