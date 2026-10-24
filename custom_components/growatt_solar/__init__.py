@@ -39,7 +39,7 @@ async def async_setup(hass: HomeAssistant, config: dict) -> bool:
 
 async def async_setup_entry(hass: HomeAssistant, entry: GrowattConfigEntry) -> bool:
     """Connect one inverter and start its polling loop."""
-    catalog = load_catalog()
+    catalog = await hass.async_add_executor_job(load_catalog)
     model = catalog.models.get(entry.data[CONF_MODEL])
     if model is None:
         raise ConfigEntryError(f"Inverter mapping {entry.data[CONF_MODEL]!r} is not available")

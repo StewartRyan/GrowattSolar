@@ -310,7 +310,7 @@ class GrowattScheduleCard extends HTMLElement {
         <div class="row">
           <span class="swatch ${period.enabled ? "" : "off"}"></span>
           <span class="when">${label(period.start)}–${label(period.end)}</span>
-          <span class="name">${period.name || `Window ${period.index + 1}`}${period.enabled ? "" : " · off"}</span>
+          <span class="name">${escapeHtml(period.name || `Window ${period.index + 1}`)}${period.enabled ? "" : " · off"}</span>
           <span class="spacer"></span>
           <button class="quiet" type="button" data-act="toggle" data-index="${period.index}" ${this._busy ? "disabled" : ""}>${period.enabled ? "Turn off" : "Turn on"}</button>
           <button class="warn" type="button" data-act="remove" data-index="${period.index}" ${this._busy ? "disabled" : ""}>Remove</button>
@@ -1598,13 +1598,13 @@ class GrowattDayCard extends HTMLElement {
     if (details) {
       const disabled = this._busy ? "disabled" : "";
       const toggle = win.enabled ? "Turn off" : "Turn on";
-      body = `<div class="copy"><strong>${times} · ${escapeHtml(win.name)}${win.enabled ? "" : " · off"}</strong><span class="phrase">${escapeHtml(this._explain(win))}</span></div><div class="bar-actions"><button class="bar-button" type="button" data-act="toggle" data-id="${win.id}" title="${toggle}" aria-label="${toggle}" ${disabled}>${win.enabled ? POWER_OFF_ICON : POWER_ON_ICON}</button><button class="bar-button warn" type="button" data-act="remove" data-id="${win.id}" title="Remove" aria-label="Remove" ${disabled}>${DELETE_ICON}</button></div>`;
+      body = `<div class="copy"><strong>${times} · ${escapeHtml(win.name)}${win.enabled ? "" : " · off"}</strong><span class="phrase">${escapeHtml(this._explain(win))}</span></div><div class="bar-actions"><button class="bar-button" type="button" data-act="toggle" data-id="${escapeHtml(win.id)}" title="${toggle}" aria-label="${toggle}" ${disabled}>${win.enabled ? POWER_OFF_ICON : POWER_ON_ICON}</button><button class="bar-button warn" type="button" data-act="remove" data-id="${escapeHtml(win.id)}" title="Remove" aria-label="Remove" ${disabled}>${DELETE_ICON}</button></div>`;
     } else if (length >= 25) {
       body = `<span>${times} · ${escapeHtml(win.kind.label)}</span>`;
     }
     const width = 100 / lanes;
     const classes = ["bar", win.enabled ? "" : "off", conflict ? "clash" : ""].join(" ");
-    return `<div class="${classes}" data-id="${win.id}" style="--c:${escapeHtml(win.kind.color)};top:${pctOf(segment.from)};height:${pctOf(length)};left:calc(${win.lane * width}% + 4px);width:calc(${width}% - 8px)">${handles}${body}</div>`;
+    return `<div class="${classes}" data-id="${escapeHtml(win.id)}" style="--c:${escapeHtml(win.kind.color)};top:${pctOf(segment.from)};height:${pctOf(length)};left:calc(${win.lane * width}% + 4px);width:calc(${width}% - 8px)">${handles}${body}</div>`;
   }
 
   _minute(event) {

@@ -19,9 +19,8 @@ async def async_get_config_entry_diagnostics(
     entry: GrowattConfigEntry,
 ) -> dict[str, Any]:
     """Return mapping, transport, and reading details for troubleshooting."""
-    del hass
     coordinator = entry.runtime_data
-    catalog = load_catalog()
+    catalog = await hass.async_add_executor_job(load_catalog)
     readings: dict[str, Any] = {}
     for key, reading in (coordinator.data or {}).items():
         if reading is None:

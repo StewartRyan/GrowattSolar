@@ -47,7 +47,7 @@ class GrowattSolarConfigFlow(ConfigFlow, domain=DOMAIN):
 
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult:
         """Choose a discovered model and connect to its gateway."""
-        catalog = load_catalog()
+        catalog = await self.hass.async_add_executor_job(load_catalog)
         if not catalog.models:
             return self.async_abort(reason="no_models")
         return await self._connection_step(
@@ -61,7 +61,7 @@ class GrowattSolarConfigFlow(ConfigFlow, domain=DOMAIN):
         self, user_input: dict[str, Any] | None = None
     ) -> ConfigFlowResult:
         """Update the gateway address or the selected mapping."""
-        catalog = load_catalog()
+        catalog = await self.hass.async_add_executor_job(load_catalog)
         if not catalog.models:
             return self.async_abort(reason="no_models")
         return await self._connection_step(
@@ -175,7 +175,7 @@ class GrowattOptionsFlow(OptionsFlow):
     async def async_step_init(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult:
         """Edit the scan interval."""
         entry = self.config_entry
-        catalog = load_catalog()
+        catalog = await self.hass.async_add_executor_job(load_catalog)
         model = catalog.models.get(entry.data[CONF_MODEL]) if entry is not None else None
         floor = model.minimum_scan_interval() if model is not None else 10
         if user_input is not None:
