@@ -38,7 +38,12 @@ RTU-over-TCP serial sticks are not supported. Shine WiFi-X is a Shine-server col
 
 ### HACS
 
-1. In HACS, open **Integrations** and choose **Custom repositories**.
+1. In HACS, open **Integrations** and search for **GrowattSolar**.
+2. Install it and restart Home Assistant.
+
+If the search does not list it yet, add the repository by hand:
+
+1. Open **Custom repositories**.
 2. Add `https://github.com/StewartRyan/GrowattSolar` with category **Integration**.
 3. Install **GrowattSolar** and restart Home Assistant.
 
